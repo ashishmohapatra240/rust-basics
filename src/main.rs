@@ -1,14 +1,26 @@
+struct Rect {
+    height: f32,
+    width: f32,
+}
+
+impl Rect {
+    fn area(&self) -> f32 {
+        return self.height * self.width;
+    }
+    fn print_something(){
+        println!("Something");
+    }
+}
+
 fn main() {
-    let mut s1: String = String::from("Ashish");
-    let s2 = &mut s1;
-    let s3 = &s1;
-    let s4 = &s1;
+    let r = Rect {
+        width: 10.0,
+        height: 20.3,
+    };
 
-    println!("{}", s1);
-    println!("{}", s2);
-    println!("{}", s3);
-    println!("{}", s4);
+    println!("{}", r.height);
+    println!("{}", r.width);
 
-
-
+    println!("{}", r.area());
+    Rect::print_something();
 }

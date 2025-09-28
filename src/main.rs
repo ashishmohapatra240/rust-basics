@@ -1,26 +1,22 @@
-struct Rect {
-    height: f32,
-    width: f32,
-}
-
-impl Rect {
-    fn area(&self) -> f32 {
-        return self.height * self.width;
-    }
-    fn print_something(){
-        println!("Something");
-    }
+enum Direction {
+    North,
+    South,
+    East,
+    West,
+    NorthEast,
 }
 
 fn main() {
-    let r = Rect {
-        width: 10.0,
-        height: 20.3,
-    };
+    let direction = Direction::NorthEast;
+    steer(direction);
+}
 
-    println!("{}", r.height);
-    println!("{}", r.width);
-
-    println!("{}", r.area());
-    Rect::print_something();
+fn steer(dir: Direction) {
+    match dir {
+        Direction::East => println!("Heading East"),
+        Direction::West => println!("Heading West"),
+        Direction::North => println!("Heading North"),
+        Direction::South => println!("Heading South"),
+        _ => println!("Heading somewhere"),
+    }
 }

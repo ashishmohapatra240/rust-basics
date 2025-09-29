@@ -1,18 +1,23 @@
-struct User{
-    username: String,
+struct Rect<T> {
+    width: T,
+    height: T,
+}
+
+impl <T: std::ops::Mul<Output = T> + Copy> Rect<T> {
+    fn area(&self) -> T {
+        return self.width * self.height;
+    }
 }
 
 fn main() {
-    let u =User{
-        username: String::from("Ashish"),
+    let r = Rect {
+        width: 10,
+        height: 20,
     };
-    print_variable(1);
-    print_variable(1.1);
-    print_variable(true);
-    print_variable(String::from("Ashish"));
- 
-}
-
-fn print_variable<T: std::fmt::Display>(a: T){
-    println!("{}", a);
+    let r1 =Rect{
+        width: 10.0,
+        height: 20.0,
+    };
+    println!("{}", r.area());
+    println!("{}", r1.area());
 }

@@ -1,11 +1,18 @@
-fn main() {
-    let s1 = sum(1.1, 2.2);
-    let s2 = sum(1, 2);
-    let s3 = sum(true, false);    //cannot add bool to bool, because bool does not implement the Add trait
-    println!("{}", s2);
-    println!("{}", s1);
+struct User{
+    username: String,
 }
 
-fn sum<T: std::ops::Add<Output =T>>(a:T, b:T) -> T{
-    return a + b;
+fn main() {
+    let u =User{
+        username: String::from("Ashish"),
+    };
+    print_variable(1);
+    print_variable(1.1);
+    print_variable(true);
+    print_variable(String::from("Ashish"));
+ 
+}
+
+fn print_variable<T: std::fmt::Display>(a: T){
+    println!("{}", a);
 }

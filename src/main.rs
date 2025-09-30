@@ -1,21 +1,25 @@
-use std::fmt::Display;
+use serde::{Deserialize, Serialize};
 
+#[derive(Serialize, Deserialize)]
 struct User {
     username: String,
     age: u32,
 }
-
-impl Display for User {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
-        write!(f, "{}", self.username)
-    }
-}
-
 fn main() {
     let u = User {
         username: String::from("Ashish"),
         age: 23,
     };
 
-    print!("{}", u.username);
+    let serialized_string = serde_json::to_string(&u);
+
+
+    match serialized_string{
+        Ok(str)=>{
+            println!("{}", str);
+        },
+        Err(e)=>{
+            println!("Error: {}", e);
+        }
+    }
 }

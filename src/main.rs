@@ -1,24 +1,24 @@
-use serde::{Deserialize, Serialize};
+use borsh::{BorshDeserialize, BorshSerialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(BorshSerialize, BorshDeserialize, Debug, Clone)]
 struct User {
     username: String,
     age: u32,
 }
+
 fn main() {
     let u = User {
         username: String::from("Ashish"),
         age: 23,
     };
+    let mut v: Vec<u8> = Vec::new();
+    let ans = u.serialize(&mut v);
 
-    let serialized_string = serde_json::to_string(&u);
-
-
-    match serialized_string{
-        Ok(str)=>{
-            println!("{}", str);
-        },
-        Err(e)=>{
+    match ans {
+        Ok(()) => {
+            println!("{:?}", ans);
+        }
+        Err(e) => {
             println!("Error: {}", e);
         }
     }

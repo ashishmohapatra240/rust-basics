@@ -1,25 +1,14 @@
-use borsh::{BorshDeserialize, BorshSerialize};
-
-#[derive(BorshSerialize, BorshDeserialize, Debug, Clone)]
-struct User {
-    username: String,
-    age: u32,
+struct User<'a> {
+    username: &'a str,
+    password: &'a str,
 }
-
 fn main() {
+    let str1 = String::from("Ashish");
+    let str2 = String::from("Mohapatra");
     let u = User {
-        username: String::from("Ashish"),
-        age: 23,
+        username: &str1,
+        password: &str2,
     };
-    let mut v: Vec<u8> = Vec::new();
-    let ans = u.serialize(&mut v);
-
-    match ans {
-        Ok(()) => {
-            println!("{:?}", ans);
-        }
-        Err(e) => {
-            println!("Error: {}", e);
-        }
-    }
+    
+    println!("{:?}, {:?}", u.username, u.password);
 }
